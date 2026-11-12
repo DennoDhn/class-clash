@@ -1,3 +1,17 @@
+# Release QA — 2.1.0 Avatar Collection
+
+Date: 12 November 2026.
+
+Nine JavaScript syntax checks, 68 tests and the production build pass. The build includes 16 runtime files.
+
+Twelve new animated bodies extend the six original pilots: duck, drone, toast, ninja cat, UFO, toilet helicopter, piggy bank, interceptor, space jellyfish, golden dragon, singularity and imperial ark. Prices range from 120 to 18,000 earned coins. All have individual talents; several combine timed effects. The ark has one innate rescue per new endless flight, separate from consumable stock. All bodies retain the same collision radius. Competitive and training modes disable their gameplay bonuses.
+
+New tests cover every new combination ability, energy/recharge/boost differences, separate ark rescue persistence and stock accounting, all avatar ownership export/import, competitive-mode neutrality, and compatibility with pre-update CC3 checkpoints. Existing deterministic, long-run, economy and legacy tests remain green.
+
+Browser verification: category filtering, collection count, prices and descriptions, toilet and ark animated previews, and a production-renderer gallery showing all twelve new silhouettes. The gallery is a temporary ignored QA file and is not deployed. Cards and previews were enlarged after visual review. Existing mobile checks below refer to 2.0.0; no new physical iOS/Android playtest is claimed.
+
+---
+
 # Release QA — 2.0.0 Expedition
 
 Date: 12 November 2026.

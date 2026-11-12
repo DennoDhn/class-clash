@@ -11,7 +11,7 @@ Hold the screen, mouse button or **Space** to rise; release to descend. **Escape
 - **Training:** four gradual lessons, slower flight and wider gates; collisions forgive; no earned currency, XP or leaderboards.
 - **Challenge:** share direct invitation links and `CC3-ABC123` codes for the same seeded course and rules. Comparison is manual, not online multiplayer.
 
-Three near misses charge a one-hit shield. Storm edges appear periodically and recede. Endless Expedition includes five cycling sectors: Skyline Valley, Goldgärten, Neonwerft, Drohnenpass and Aurora-Inseln. Collect crystals, bonus rings, treasure rings and supply capsules. Three per-flight contracts award additional coins. Six pilots have distinct active abilities and passive talents; selected helmets and jetpacks add bonuses. Trails remain cosmetic. These gameplay bonuses and supplies apply only to new CC3 endless flights; challenges, arena and training use equal standard physics.
+Three near misses charge a one-hit shield. Storm edges appear periodically and recede. Endless Expedition includes five cycling sectors: Skyline Valley, Goldgärten, Neonwerft, Drohnenpass and Aurora-Inseln. Collect crystals, bonus rings, treasure rings and supply capsules. Three per-flight contracts award additional coins. Eighteen avatars have distinct active abilities and passive talents; selected helmets and jetpacks add bonuses. Trails remain cosmetic. These gameplay bonuses and supplies apply only to new CC3 endless flights; challenges, arena and training use equal standard physics.
 
 ## Local data
 
@@ -26,6 +26,7 @@ Settings provide JSON export and validated replacement import (2 MB limit). No c
 - `legacy-v2.js`: frozen CC2 simulation for earlier challenges and saved flights.
 - `legacy-engine.js`: frozen CC1 rules for old challenges and saved flights.
 - `render.js`: original procedural canvas artwork and camera.
+- `avatars.js`: twelve animated non-humanoid canvas bodies, shared by hangar and flight.
 - `storage.js`: profiles, validated backups, achievements, cosmetics, records.
 - `app.js`: UI, input, pause/resume, audio, import/export, sharing.
 - `sw.js`: versioned same-origin offline cache. An update banner lets players save and reload into a waiting version; otherwise activation waits for old tabs to close.
