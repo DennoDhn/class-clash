@@ -1,4 +1,4 @@
-# Release QA — 1.0.2
+# Release QA — 1.0.3
 
 Date: 12 November 2026.
 
@@ -34,3 +34,5 @@ No physical iPhone/iPad/Android testing or real touch-device performance measure
 The initial Actions run passed tests but could not enable Pages. Pages was subsequently enabled and the 1.0.1 custom deployment succeeded. A concurrent branch-based Pages deployment then replaced it with the rendered README because the game entry was nested under `public/`.
 
 Release 1.0.2 moves the canonical game assets to the repository root and adds `.nojekyll`. The custom workflow builds a clean `dist/` containing only runtime files; branch-based Pages also serves the same root game. This removes the dependence on which Pages publishing mode is selected. The game rules and simulation are unchanged.
+
+The public game was subsequently verified at https://dennodhn.github.io/class-clash/: start screen, countdown, rendered flight and completed-run result all observed. Both publish paths now use the same runtime source. Final visual correction: add a translucent HUD backing so scores remain readable over dark gates.
