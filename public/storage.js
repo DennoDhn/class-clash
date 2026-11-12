@@ -2,7 +2,7 @@ export const KEY='class-clash.v1', BACKUP=KEY+'.backup';
 export const SKINS=[{id:'mint',name:'Mint Pilot',color:'#9dff70',price:0},{id:'coral',name:'Solar Rush',color:'#ff906e',price:80},{id:'ice',name:'Glacier',color:'#85dcff',price:140},{id:'pink',name:'Pink Nova',color:'#ffa5e9',price:220},{id:'gold',name:'Gold Wing',color:'#ffd16b',price:350},{id:'lilac',name:'Ultra Violet',color:'#bba4ff',price:500}];
 export function profile(name='Pilot 01') {return {id:globalThis.crypto?.randomUUID?.()||`${Date.now()}-${Math.random()}`,name:name.trim().slice(0,20)||'Pilot',created:Date.now(),coins:0,xp:0,skin:'mint',owned:['mint'],runs:[],stats:{runs:0,wins:0,gates:0,coins:0,seconds:0,near:0},achievements:[],saved:null};}
 export function fresh() {const p=profile();return {version:1,active:p.id,profiles:[p],settings:{sound:true,music:false,reduced:false}};}
-const number=(v,max=1e12)=>typeof v==='number'&&Number.isFinite(v)&&v>=0&&v<=max;
+const number=(v,max=1e15)=>typeof v==='number'&&Number.isFinite(v)&&v>=0&&v<=max;
 export function validate(data){
  if(!data||data.version!==1||!Array.isArray(data.profiles)||data.profiles.length<1||data.profiles.length>12)throw new Error('Diese Datei ist keine gültige Class-Clash-Sicherung.');
  const ids=new Set();

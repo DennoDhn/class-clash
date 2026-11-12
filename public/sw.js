@@ -1,4 +1,4 @@
-const CACHE='class-clash-1.0.0-final';
+const CACHE='class-clash-1.0.1';
 const DEV=self.location.hostname==='127.0.0.1'||self.location.hostname==='localhost';
 const FILES=['./','./index.html','./style.css','./app.js','./engine.js','./render.js','./storage.js','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>DEV?self.skipWaiting():undefined));});

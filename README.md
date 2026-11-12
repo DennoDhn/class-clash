@@ -6,7 +6,7 @@
 
 Hold the screen, mouse button or **Space** to rise; release to descend. **Escape** or the pause button pauses. On phones, the camera keeps the pilot toward the left to improve visibility. Collisions use a forgiving circle inside the artwork.
 
-- **Endless:** unlimited flight, bounded difficulty, torches/gates as the main record.
+- **Endless:** unlimited flight, bounded difficulty, gates as the main record.
 - **Arena:** seven explicitly labeled computer opponents, same physics and collisions.
 - **Training:** collisions forgive; no earned currency, XP or leaderboards.
 - **Challenge:** share `CC1-ABC123` codes for the same seeded course and rules. Comparison is manual, not online multiplayer.

@@ -1,0 +1,34 @@
+# Release QA — 1.0.1
+
+Date: 12 November 2026.
+
+## Automated checks
+
+`npm run check`: passes all five JavaScript syntax checks.
+
+`npm test`: 23 passing tests. Covers deterministic inputs and course seeds; full snapshot continuation; 1,801 simulated seconds without a forced end; 40 seeds at three simulated minutes each; bounded gaps and speed; gravity/thrust; hits and shields; forgiving training; seven arena bots and win resolution; periodic storm; malformed snapshots; profile isolation; primary/backup storage; storage errors; invalid imports; permanent best retention; training reward exclusion; completed-run timestamp persistence.
+
+The simulated flight uses an autopilot for reproducible verification, not a claim of 30 minutes of manual play.
+
+## Browser checks actually performed
+
+Chrome desktop (approximately 1365 × 936), plus an iframe viewport of 390 × 844 for responsive CSS and UI behavior:
+
+- Start screen and procedural artwork visually inspected.
+- Profile creation, activation and persistence across reload.
+- Countdown, rendered flight, death and results.
+- A saved flight resumed, paused, and continued.
+- Completed run appears in leaderboard and survives a full reload.
+- Hangar artwork/layout and insufficient-funds purchase behavior.
+- Settings dialog and service-worker readiness indicator.
+- Export action displays completion feedback. The browser automation download event timed out; a downloaded file/import round-trip was **not** verified end-to-end. The JSON serializer/validator round-trip is covered by unit tests.
+
+The browser review caught and fixed a timestamp validation bug that could cause a completed save to fall back to an older backup. Added a regression test. Also replaced unsupported arrow/pause glyphs with CSS icons and adjusted the phone camera and hero label.
+
+Screenshots: [desktop](desktop-preview.jpg), [390-pixel viewport](mobile-preview.jpg).
+
+## Verification limits and deployment
+
+No physical iPhone/iPad/Android testing or real touch-device performance measurement was possible. The narrow iframe tests responsive layout, not mobile Safari behavior. Offline cache registration was observed; a disconnected-browser reload was not tested.
+
+The initial GitHub Actions run passes source checks and tests but fails at Pages configuration because the repository's Pages site has not been enabled and the workflow token cannot perform initial enablement. The connected GitHub API has no Pages-settings action. Browser access to repository settings requires a GitHub sign-in that is not present. Owner action needed: Settings → Pages → Source → GitHub Actions; then rerun the publishing workflow. Public deployment must be verified afterward.
