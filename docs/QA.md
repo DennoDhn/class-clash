@@ -1,3 +1,17 @@
+# Release QA — 1.1.0
+
+Date: 12 November 2026.
+
+## Current release checks
+
+Syntax checks, 40 Node tests and the production build pass. Additional regression tests cover shield boundary recovery, obstacle recovery, equal simulation at 5–60 FPS, stall pauses, invariant viewport visibility, bot collision positions, deeply malformed snapshots, backup recovery without currency rollback, gradual training, rings and warning fields, direct challenge links, exact legacy CC1 simulation compatibility, record migration and cosmetic progression.
+
+Chrome browser checks: new helmet artwork and hangar tabs; XP and next unlock display; direct CC2 invitation prefill; training selection, countdown, safe pause and explicit training completion with zero rewards. Browser extension metadata errors were present; they are unrelated to the game. Cloud rendering stalls limit manual game-feel testing; deterministic simulation tests cover long runs separately.
+
+No physical iOS or Android device testing. A full disconnected-browser reload and downloaded export/import browser round trip remain unverified. Earlier release checks below are historical, not a claim that each was repeated for 1.1.0.
+
+---
+
 # Release QA — 1.0.3
 
 Date: 12 November 2026.
