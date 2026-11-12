@@ -9,9 +9,9 @@ Hold the screen, mouse button or **Space** to rise; release to descend. **Escape
 - **Endless:** unlimited flight, bounded difficulty, gates as the main record.
 - **Arena:** seven explicitly labeled computer opponents, same physics and collisions.
 - **Training:** four gradual lessons, slower flight and wider gates; collisions forgive; no earned currency, XP or leaderboards.
-- **Challenge:** share direct invitation links and `CC2-ABC123` codes for the same seeded course and rules. Comparison is manual, not online multiplayer.
+- **Challenge:** share direct invitation links and `CC3-ABC123` codes for the same seeded course and rules. Comparison is manual, not online multiplayer.
 
-Three near misses charge a one-hit shield. Storm edges appear periodically and recede. Collect crystals and bonus rings to unlock six colors, four helmets, three jetpacks and three trails. Warning fields and calmer sections vary the course. No cosmetic changes flight performance.
+Three near misses charge a one-hit shield. Storm edges appear periodically and recede. Endless Expedition includes five cycling sectors: Skyline Valley, Goldgärten, Neonwerft, Drohnenpass and Aurora-Inseln. Collect crystals, bonus rings, treasure rings and supply capsules. Three per-flight contracts award additional coins. Six pilots have distinct active abilities and passive talents; selected helmets and jetpacks add bonuses. Trails remain cosmetic. These gameplay bonuses and supplies apply only to new CC3 endless flights; challenges, arena and training use equal standard physics.
 
 ## Local data
 
@@ -21,7 +21,9 @@ Settings provide JSON export and validated replacement import (2 MB limit). No c
 
 ## Files
 
-- `engine.js`: renderer-independent fixed 120 Hz simulation and seeded generation.
+- `engine.js`: renderer-independent fixed 120 Hz simulation, seeded generation, abilities and missions.
+- `equipment.js`: shared pilot, equipment, supply and sector definitions.
+- `legacy-v2.js`: frozen CC2 simulation for earlier challenges and saved flights.
 - `legacy-engine.js`: frozen CC1 rules for old challenges and saved flights.
 - `render.js`: original procedural canvas artwork and camera.
 - `storage.js`: profiles, validated backups, achievements, cosmetics, records.
@@ -54,3 +56,12 @@ This is a complete first release, not online multiplayer. The artwork is origina
 ## Version 1.1.0
 
 CC2 fixes shield recovery, rendered bot/collision alignment and low-frame-rate timing. Stalls over half a second pause safely. Damaged nested snapshots recover from a valid matching backup without rolling back current currency. Old CC1 bests remain in a separate archive; profiles, currency, cosmetics and resumable CC1 flights are preserved. New progress panels show XP and the next affordable cosmetic; particles and record notices provide feedback.
+
+## Version 2.0.0 — Expedition
+
+- Use **E** for the equipped pilot's rechargeable ability, **B** for a boost cell and **M** for a magnet capsule. Touch buttons provide the same actions. Boost/phase protect against hits, time dilation reduces course speed, magnets collect nearby crystals/capsules, and gold rush doubles pickup/ring currency. Shields absorb one hit.
+- Supply shop: rescue core 25 coins, boost cell 12, magnet capsule 15. No real-money purchases. One rescue core, two boost cells and one magnet capsule can be packed per endless flight. Auto-pack is optional. Used supplies are spent; unused supplies are returned on completion or replacement of a saved flight. Pausing preserves the packed supplies.
+- Each profile gets one starter rescue core, two boost cells and one magnet capsule exactly once during creation/migration. Existing unlocked colors become pilots without a repurchase.
+- Pilot and equipment choices are captured in the saved flight; changing the hangar while a flight is paused does not change that flight's powers.
+- New results use CC3. CC1 and CC2 records are retained in separate archives and their saved flights retain original rules. Local records remain editable and are not competitive-server scores.
+- 60 automated tests pass, including exact old-version continuation, supply accounting, ability effects, mission idempotency, five-sector generation and profile migration. See `docs/QA.md` for actual browser checks and limits.

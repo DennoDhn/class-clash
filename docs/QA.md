@@ -1,3 +1,31 @@
+# Release QA — 2.0.0 Expedition
+
+Date: 12 November 2026.
+
+## Automated verification
+
+All eight JavaScript syntax checks, 60 tests and the clean production build pass. Build includes 15 runtime files. New tests verify all six pilot abilities; passive bonuses; boost duration; slow-motion course speed; phase expiry; one-use rescue cores; shop funds and limits; reserve/refund idempotency; replacing and resuming flights; opt-out; standard competitive modes; magnet range; double rewards; all five sectors, drones, vaults and four supply pickup kinds; one-time mission rewards; CC1/CC2 archives; malformed expedition states; starter-pack migration; deterministic CC3 challenges. The prior 30-minute simulated run and 40-seed tests also pass.
+
+## Browser checks actually performed
+
+Chrome desktop and 390 × 844 iframe viewport:
+
+- Updated home, pilot descriptions, functional equipment descriptions and supplies tab inspected.
+- Insufficient-funds feedback verified.
+- A disposable local test profile was imported through the actual settings/file-picker UI. Solar Rush was purchased for 80 coins and a boost cell for 12. After a full reload: 108 of the original 200 test coins remained, Solar Rush remained equipped and stock was 3 boost cells.
+- Starting a flight reserved the expected 1 rescue / 2 boost / 1 magnet. Replacing a paused flight preserved unused packed stock without double deduction.
+- New HUD and action buttons are present. Safe pause on stalled frames remains active.
+- Production renderer inspected in a temporary local deterministic scene harness for Goldgärten, Neonwerft, Drohnenpass and Aurora-Inseln. Ring, supply capsule, drone fields and sector decoration rendered successfully. Harness files are excluded from source and deployment.
+- Mobile hangar wraps its tabs and supply summary without horizontal overflow.
+
+Cloud browser frame stalls prevent a reliable continuous manual play session here. Automated simulation and static renderer checks supplement, but do not replace, physical mobile gameplay testing. No physical iOS/Android test or disconnected-browser reload is claimed. The successful import uses a generated test file; a downloaded export/import round trip remains unverified.
+
+## Fixes from review
+
+Replaced an unsupported shop arrow glyph; clarified mission counters; added an explicit display of supplies reserved in a paused flight; adjusted short portrait HUD layout; preserved calm segments when adding sector-specific obstacles. Old cosmetic-only copy was replaced with precise effect and mode descriptions.
+
+---
+
 # Release QA — 1.1.0
 
 Date: 12 November 2026.
