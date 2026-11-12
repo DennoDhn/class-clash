@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {fresh,profile,validate,load,save,record,KEY,BACKUP} from '../public/storage.js';
+import {createGame} from '../public/engine.js';
+const memory=()=>{const m=new Map();return {getItem:k=>m.get(k)||null,setItem:(k,v)=>m.set(k,v)}};
+test('fresh profile round trips through storage',()=>{const db=memory(),data=fresh();assert.ok(save(db,data));assert.deepEqual(load(db).data,data);});
+test('backup recovers corrupted primary save',()=>{const db=memory(),data=fresh();save(db,data);save(db,data);db.setItem(KEY,'{broken');assert.deepEqual(load(db).data,data);assert.match(load(db).warning,/wiederhergestellt/);});
+test('storage failure returns false instead of crashing',()=>{const db={getItem(){throw Error()},setItem(){throw Error()}};assert.equal(save(db,fresh()),false);assert.ok(load(db).warning);});
+test('invalid imports and duplicate profile ids rejected',()=>{assert.throws(()=>validate({}));const d=fresh();d.profiles.push(d.profiles[0]);assert.throws(()=>validate(d));});
+test('negative currencies and invalid skins rejected',()=>{const d=fresh();d.profiles[0].coins=-1;assert.throws(()=>validate(d));d.profiles[0].coins=0;d.profiles[0].skin='missing';assert.throws(()=>validate(d));});
+test('records award only earned currency, retain personal best beyond history limit',()=>{const p=profile(),s=createGame();Object.assign(s,{time:90,passed:100,coins:12,score:5000,near:2,over:true});record(p,s);for(let i=0;i<60;i++)record(p,{...s,passed:2,coins:1});assert.equal(p.runs.length,50);assert.equal(p.bests.endless.passed,100);assert.equal(p.coins,72);assert.ok(p.achievements.includes('hundred'));});
+test('training cannot farm coins, XP or records',()=>{const p=profile(),before=JSON.stringify(p),s=createGame('training');s.coins=500;s.passed=99;record(p,s);assert.equal(JSON.stringify(p),before);});
+test('multiple profiles isolate currency and progress',()=>{const a=profile('A'),b=profile('B'),s=createGame();s.coins=8;s.time=10;s.score=100;record(a,s);assert.equal(a.coins,8);assert.equal(b.coins,0);assert.equal(b.stats.runs,0);});
