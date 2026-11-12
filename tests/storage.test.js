@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {fresh,profile,validate,load,save,record,KEY,BACKUP} from '../public/storage.js';
-import {createGame} from '../public/engine.js';
+import {fresh,profile,validate,load,save,record,KEY,BACKUP} from '../storage.js';
+import {createGame} from '../engine.js';
 const memory=()=>{const m=new Map();return {getItem:k=>m.get(k)||null,setItem:(k,v)=>m.set(k,v)}};
 test('fresh profile round trips through storage',()=>{const db=memory(),data=fresh();assert.ok(save(db,data));assert.deepEqual(load(db).data,data);});
 test('backup recovers corrupted primary save',()=>{const db=memory(),data=fresh();save(db,data);save(db,data);db.setItem(KEY,'{broken');assert.deepEqual(load(db).data,data);assert.match(load(db).warning,/wiederhergestellt/);});

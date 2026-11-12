@@ -1,4 +1,4 @@
-# Release QA — 1.0.1
+# Release QA — 1.0.2
 
 Date: 12 November 2026.
 
@@ -31,4 +31,6 @@ Screenshots: [desktop](desktop-preview.jpg), [390-pixel viewport](mobile-preview
 
 No physical iPhone/iPad/Android testing or real touch-device performance measurement was possible. The narrow iframe tests responsive layout, not mobile Safari behavior. Offline cache registration was observed; a disconnected-browser reload was not tested.
 
-The initial GitHub Actions run passes source checks and tests but fails at Pages configuration because the repository's Pages site has not been enabled and the workflow token cannot perform initial enablement. The connected GitHub API has no Pages-settings action. Browser access to repository settings requires a GitHub sign-in that is not present. Owner action needed: Settings → Pages → Source → GitHub Actions; then rerun the publishing workflow. Public deployment must be verified afterward.
+The initial Actions run passed tests but could not enable Pages. Pages was subsequently enabled and the 1.0.1 custom deployment succeeded. A concurrent branch-based Pages deployment then replaced it with the rendered README because the game entry was nested under `public/`.
+
+Release 1.0.2 moves the canonical game assets to the repository root and adds `.nojekyll`. The custom workflow builds a clean `dist/` containing only runtime files; branch-based Pages also serves the same root game. This removes the dependence on which Pages publishing mode is selected. The game rules and simulation are unchanged.

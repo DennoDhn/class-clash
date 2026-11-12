@@ -1,1 +1,11 @@
-{"name":"class-clash","version":"1.0.1","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.js","check":"node --check public/app.js && node --check public/engine.js && node --check public/render.js && node --check public/storage.js && node --check public/sw.js"}}
+{
+  "name": "class-clash",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check app.js && node --check engine.js && node --check render.js && node --check storage.js && node --check sw.js",
+    "build": "node scripts/build.mjs"
+  }
+}

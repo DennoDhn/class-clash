@@ -21,11 +21,11 @@ Settings provide JSON export and validated replacement import (2 MB limit). No c
 
 ## Files
 
-- `public/engine.js`: renderer-independent fixed 120 Hz simulation and seeded generation.
-- `public/render.js`: original procedural canvas artwork and camera.
-- `public/storage.js`: profiles, validated backups, achievements, cosmetics, records.
-- `public/app.js`: UI, input, pause/resume, audio, import/export, sharing.
-- `public/sw.js`: versioned same-origin offline cache. New versions activate after old tabs close, preventing a mid-run mixed deployment.
+- `engine.js`: renderer-independent fixed 120 Hz simulation and seeded generation.
+- `render.js`: original procedural canvas artwork and camera.
+- `storage.js`: profiles, validated backups, achievements, cosmetics, records.
+- `app.js`: UI, input, pause/resume, audio, import/export, sharing.
+- `sw.js`: versioned same-origin offline cache. New versions activate after old tabs close, preventing a mid-run mixed deployment.
 - `tests/`: Node built-in tests, no install required.
 
 ## Verify
@@ -33,13 +33,16 @@ Settings provide JSON export and validated replacement import (2 MB limit). No c
 ```sh
 npm run check
 npm test
+npm run build
 ```
 
 Tests cover deterministic challenges, snapshot continuation, a simulated 30-minute flight, 40 generated courses, shield behavior, training, arena placement, storm bounds, persistence recovery, import validation and permanent best retention.
 
 ## Publish
 
-GitHub Pages workflow `.github/workflows/pages.yml` tests and publishes `public/` on pushes to `main`. In repository **Settings → Pages**, select **GitHub Actions** if Pages is not yet enabled. The workflow attempts initial enablement, but organization/app permissions may require the repository owner to select it once.
+GitHub Pages workflow `.github/workflows/pages.yml` tests and publishes `` on pushes to `main`. In repository **Settings → Pages**, select **GitHub Actions** if Pages is not yet enabled. The workflow attempts initial enablement, but organization/app permissions may require the repository owner to select it once.
+
+The root contains the canonical game entry point and assets, so branch-based Pages deployment also serves the game instead of rendering this README. The build copies only the runtime files into `dist/` for Actions deployments.
 
 The game uses only relative paths, so repository subpaths work. Manifest and bundled PNG icons support installation where the browser offers it. After one complete successful load, the service worker makes the app available offline; browsers may evict cached data.
 

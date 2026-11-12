@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGame,step,snapshot,validSnapshot,challengeSeed,gateCenter,storm,STEP,PX} from '../public/engine.js';
+import {createGame,step,snapshot,validSnapshot,challengeSeed,gateCenter,storm,STEP,PX} from '../engine.js';
 function autopilot(s,seconds){for(let i=0;i<seconds/STEP&&!s.over;i++){const g=s.gates.find(g=>g.x+g.w>s.distance+PX-16);const target=g?gateCenter(g,s.time):360;step(s,s.player.y+s.player.v*.22>target);}return s;}
 test('same challenge and inputs reproduce the exact simulation',()=>{const seed=challengeSeed('CC1-ABC123');const a=autopilot(createGame('challenge',seed,'CC1-ABC123'),90);const b=autopilot(createGame('challenge',seed,'CC1-ABC123'),90);assert.deepEqual(a,b);assert.ok(a.passed>10);});
 test('malformed challenge codes rejected',()=>{for(const c of ['','CC2-ABC','CC1-A','<script>','CC1-ABC DEF'])assert.throws(()=>challengeSeed(c));});
